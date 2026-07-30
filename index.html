@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KVideo - 影視展覽頁</title>
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --card-border-radius: 20px;
+            --text-color: #333;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); padding: 30px 20px; }
+        .movie-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 20px; }
+        .movie-card { background: #f8f9fa; border-radius: var(--card-border-radius); padding: 12px; display: flex; flex-direction: column; align-items: center; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: 1px solid #eaeaea; }
+        .movie-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); background: #ffffff; }
+        .poster-wrapper { position: relative; width: 100%; padding-top: 145%; border-radius: 16px; overflow: hidden; background-color: #1e1e2f; margin-bottom: 12px; }
+        .poster-wrapper img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        .fallback-gradient-box { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; color: rgba(255, 255, 255, 0.85); padding: 15px; text-align: center; }
+        .fallback-gradient-box .camera-icon { font-size: 36px; margin-bottom: 8px; opacity: 0.8; }
+        .fallback-gradient-box .no-poster-text { font-size: 13px; font-weight: 600; letter-spacing: 1px; line-height: 1.4; }
+        .rating-badge { position: absolute; top: 10px; right: 10px; background: rgba(0, 0, 0, 0.75); color: #fff; padding: 4px 8px; border-radius: 8px; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 4px; z-index: 5; }
+        .rating-badge span.star { color: #fcc419; }
+        .title-box { width: 100%; text-align: center; padding: 0 4px; display: flex; flex-direction: column; justify-content: center; min-height: 40px; }
+        .title-en { font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #222; }
+        .title-cn { font-size: 13px; font-weight: 600; color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
+        .title-cn:empty { display: none; }
+        .movie-info { font-size: 12px; color: #888; margin-top: 4px; }
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: white; padding: 10px 20px; border-radius: 20px; font-size: 14px; display: none; z-index: 1000; }
+    </style>
+</head>
+<body>
+    <div class="movie-grid">
+        
+                <div class="movie-card" onclick="cardClickAction('2026movie', 'https://u.pcloud.link/publink/show?code=kZi80o5Zg9O9NeTKsbVHIk7CD5bObzgE3vMk')">
+                    <div class="poster-wrapper" title="點擊前往 IMDb 頁面" onclick="posterClickAction(event, 'https://www.imdb.com/title/tt32820897/')">
+                        
+                            <img src="https://m.media-amazon.com/images/M/MV5BOGQ3YWUzYjEtMTJiYy00ZjQ0LWI0YjktYjhiNGVhNGExYTM3XkEyXkFqcGc@._V1_SX300.jpg" alt="Demon Slayer: Kimetsu no Yaiba – The Movie: Infinity Castle">
+                        
+                        <div class="rating-badge"><span class="star">★</span>8.4</div>
+                    </div>
+                    <div class="title-box">
+                        <div class="title-en" title="Demon Slayer: Kimetsu no Yaiba – The Movie: Infinity Castle">Demon Slayer: Kimetsu no Yaiba – The Movie: Infinity Castle</div>
+                        <div class="title-cn" title="鬼滅之刃劇場版 無限城篇">鬼滅之刃劇場版 無限城篇</div>
+                    </div>
+                    <div class="movie-info">密碼: 2026movie</div>
+                </div>
+                <div class="movie-card" onclick="cardClickAction('2026movie', 'https://u.pcloud.link/publink/show?code=kZvjIr5Zmzhh7GsF7B8ALF0Nt2YKTfB451kk')">
+                    <div class="poster-wrapper" title="點擊前往 IMDb 頁面" onclick="posterClickAction(event, 'https://www.imdb.com/title/tt29355505')">
+                        
+                            <img src="https://m.media-amazon.com/images/M/MV5BZTI1YTBiNmEtYWUxZi00YzFkLWIzNjMtMmZjMmY2NzM0ZWMzXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg" alt="TOY STORY 5">
+                        
+                        <div class="rating-badge"><span class="star">★</span>7.5</div>
+                    </div>
+                    <div class="title-box">
+                        <div class="title-en" title="TOY STORY 5">TOY STORY 5</div>
+                        <div class="title-cn" title="玩具總動員5">玩具總動員5</div>
+                    </div>
+                    <div class="movie-info">密碼: 2026movie</div>
+                </div>
+                <div class="movie-card" onclick="cardClickAction('2026movie', 'https://u.pcloud.link/publink/show?code=kZtePG5ZPo7y4UP5oJLXp1c13RQWXYWQTBXX')">
+                    <div class="poster-wrapper" title="點擊前往 IMDb 頁面" onclick="posterClickAction(event, 'https://www.imdb.com/title/tt33612209')">
+                        
+                            <img src="https://m.media-amazon.com/images/M/MV5BZmM3ZDU3ODItZmY5Yi00OTQ2LWE5OTctZTA5NDBhMWJkOGY3XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg" alt="Devil.Wears.Prada.2">
+                        
+                        <div class="rating-badge"><span class="star">★</span>6.6</div>
+                    </div>
+                    <div class="title-box">
+                        <div class="title-en" title="Devil.Wears.Prada.2">Devil.Wears.Prada.2</div>
+                        <div class="title-cn" title="穿著Prada的惡魔2.2026">穿著Prada的惡魔2.2026</div>
+                    </div>
+                    <div class="movie-info">密碼: 2026movie</div>
+                </div>
+                <div class="movie-card" onclick="cardClickAction('2026movie', 'https://u.pcloud.link/publink/show?code=kZPY0A5ZGE3a7VSqGpFRfmS1Y4tYrSpgMYzy')">
+                    <div class="poster-wrapper" title="點擊前往 IMDb 頁面" onclick="posterClickAction(event, 'https://www.imdb.com/title/tt34378301')">
+                        
+                            <img src="https://m.media-amazon.com/images/M/MV5BZGVkZjAxMzYtNGE5YS00ZWEwLTk0NGMtY2Q4MWJiN2YyZDA2XkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg" alt="Tom.Clancys.Jack.Ryan-Ghost.War.2026.">
+                        
+                        <div class="rating-badge"><span class="star">★</span>5.7</div>
+                    </div>
+                    <div class="title-box">
+                        <div class="title-en" title="Tom.Clancys.Jack.Ryan-Ghost.War.2026.">Tom.Clancys.Jack.Ryan-Ghost.War.2026.</div>
+                        <div class="title-cn" title="湯姆·克蘭西之傑克·萊恩-幽影暗戰">湯姆·克蘭西之傑克·萊恩-幽影暗戰</div>
+                    </div>
+                    <div class="movie-info">密碼: 2026movie</div>
+                </div>
+                <div class="movie-card" onclick="cardClickAction('2026movie', 'https://u.pcloud.link/publink/show?code=kZwa1I5Zif0oRmtELHHiFiu953CaeHdX2W3V')">
+                    <div class="poster-wrapper" title="點擊前往 IMDb 頁面" onclick="posterClickAction(event, 'https://www.imdb.com/title/tt17490712')">
+                        
+                            <img src="https://m.media-amazon.com/images/M/MV5BNTg2YWNkN2EtMzc1Ny00ZTBhLWFmYTItMmMyNzhjNjhhNmVhXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg" alt="Mortal Kombat II">
+                        
+                        <div class="rating-badge"><span class="star">★</span>6.7</div>
+                    </div>
+                    <div class="title-box">
+                        <div class="title-en" title="Mortal Kombat II">Mortal Kombat II</div>
+                        <div class="title-cn" title="真人快打 II">真人快打 II</div>
+                    </div>
+                    <div class="movie-info">密碼: 2026movie</div>
+                </div>
+                <div class="movie-card" onclick="cardClickAction('2026movie', 'https://u.pcloud.link/publink/show?code=kZ2k1I5ZY2qzF9pEI4YLYF3nTCl9WjsNMBd7')">
+                    <div class="poster-wrapper" title="點擊前往 IMDb 頁面" onclick="posterClickAction(event, 'https://www.imdb.com/title/tt32080855')">
+                        
+                            <div class="fallback-gradient-box">
+                                <div class="camera-icon">📷</div>
+                                <div class="no-poster-text">找不到電影劇照</div>
+                            </div>
+                        
+                        <div class="rating-badge"><span class="star">★</span>7.7</div>
+                    </div>
+                    <div class="title-box">
+                        <div class="title-en" title="Da meng.2025">Da meng.2025</div>
+                        <div class="title-cn" title="大濛">大濛</div>
+                    </div>
+                    <div class="movie-info">密碼: 2026movie</div>
+                </div>
+                <div class="movie-card" onclick="cardClickAction('2026movie', 'https://u.pcloud.link/publink/show?code=kZxCMU5ZKT0eXQ7XhFFeKEalNrWOJQrrJ4C7')">
+                    <div class="poster-wrapper" title="點擊前往 IMDb 頁面" onclick="posterClickAction(event, 'https://www.imdb.com/title/tt28650488')">
+                        
+                            <img src="https://m.media-amazon.com/images/M/MV5BYWYxYWRkMTUtMGMwZC00MzYyLThlNjEtNDcwMDYyMTQ4ZjJlXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg" alt="The Super Mario Galaxy Movie">
+                        
+                        <div class="rating-badge"><span class="star">★</span>6.3</div>
+                    </div>
+                    <div class="title-box">
+                        <div class="title-en" title="The Super Mario Galaxy Movie">The Super Mario Galaxy Movie</div>
+                        <div class="title-cn" title="超級瑪利歐銀河電影版">超級瑪利歐銀河電影版</div>
+                    </div>
+                    <div class="movie-info">密碼: 2026movie</div>
+                </div>
+                <div class="movie-card" onclick="cardClickAction('2026movie', 'https://u.pcloud.link/publink/show?code=kZhEOO5Z8uTwnmydR6VpBX0Mmg8KeBFa2gH7')">
+                    <div class="poster-wrapper" title="點擊前往 IMDb 頁面" onclick="posterClickAction(event, 'https://www.imdb.com/title/tt26443616/')">
+                        
+                            <img src="https://m.media-amazon.com/images/M/MV5BNzRiMzZlMTMtNmU3OC00MDUwLThmNDUtMTBjZmQ3MWQ4NTljXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg" alt="Hoppers 2026">
+                        
+                        <div class="rating-badge"><span class="star">★</span>7.4</div>
+                    </div>
+                    <div class="title-box">
+                        <div class="title-en" title="Hoppers 2026">Hoppers 2026</div>
+                        <div class="title-cn" title="狸想世界">狸想世界</div>
+                    </div>
+                    <div class="movie-info">密碼: 2026movie</div>
+                </div>
+                <div class="movie-card" onclick="cardClickAction('2026movie', 'https://u.pcloud.link/publink/show?code=kZB6OO5ZLz0WOTp7psFgaOljWUIFFSM1qHnV')">
+                    <div class="poster-wrapper" title="點擊前往 IMDb 頁面" onclick="posterClickAction(event, 'https://www.imdb.com/title/tt31050594')">
+                        
+                            <img src="https://m.media-amazon.com/images/M/MV5BMWJmYjcwMTMtMDU1ZC00ZGI5LTlmZDAtODI3NDA2ZTE5ZGVlXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg" alt="Mercy.2026">
+                        
+                        <div class="rating-badge"><span class="star">★</span>6.2</div>
+                    </div>
+                    <div class="title-box">
+                        <div class="title-en" title="Mercy.2026">Mercy.2026</div>
+                        <div class="title-cn" title="關鍵公敵">關鍵公敵</div>
+                    </div>
+                    <div class="movie-info">密碼: 2026movie</div>
+                </div>
+                <div class="movie-card" onclick="cardClickAction('2026movie', 'https://u.pcloud.link/publink/show?code=kZI6OO5ZleFEYK13BA7RQMJtyEjXej9VSBQy')">
+                    <div class="poster-wrapper" title="點擊前往 IMDb 頁面" onclick="posterClickAction(event, 'https://www.imdb.com/title/tt37535298/')">
+                        
+                            <img src="https://m.media-amazon.com/images/M/MV5BM2ZmZjEwZDEtOTYzZC00OWJhLTk4ZTctN2NlYTA2Y2ZmOWQzXkEyXkFqcGc@._V1_SX300.jpg" alt="Under.Current">
+                        
+                        <div class="rating-badge"><span class="star">★</span>5.5</div>
+                    </div>
+                    <div class="title-box">
+                        <div class="title-en" title="Under.Current">Under.Current</div>
+                        <div class="title-cn" title="廉政風雲：內幕">廉政風雲：內幕</div>
+                    </div>
+                    <div class="movie-info">密碼: 2026movie</div>
+                </div>
+                <div class="movie-card" onclick="cardClickAction('2026movie', 'https://u.pcloud.link/publink/show?code=kZ46OO5ZwoxqbAhMbiSpqe4dkgBI9kBrjOrX')">
+                    <div class="poster-wrapper" title="點擊前往 IMDb 頁面" onclick="posterClickAction(event, 'https://www.imdb.com/title/tt32430579')">
+                        
+                            <img src="https://m.media-amazon.com/images/M/MV5BZThlN2M4ZTUtYTU3Mi00MDE5LWFhYWUtNjkxMWEwNjUwNDVhXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg" alt="Crime.101">
+                        
+                        <div class="rating-badge"><span class="star">★</span>6.8</div>
+                    </div>
+                    <div class="title-box">
+                        <div class="title-en" title="Crime.101">Crime.101</div>
+                        <div class="title-cn" title="犯罪101">犯罪101</div>
+                    </div>
+                    <div class="movie-info">密碼: 2026movie</div>
+                </div>
+                <div class="movie-card" onclick="cardClickAction('2026movie', 'https://u.pcloud.link/publink/show?code=kZTNOO5ZBOJ8oTiaQgJQg8589LwE0Rkr8WiV')">
+                    <div class="poster-wrapper" title="點擊前往 IMDb 頁面" onclick="posterClickAction(event, 'https://www.imdb.com/title/tt32357218')">
+                        
+                            <img src="https://m.media-amazon.com/images/M/MV5BMzI2ODY3MzQtYzllNy00YWM1LWExZTgtOGIwNjk2MmE2MmY2XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg" alt="Shelter.2026">
+                        
+                        <div class="rating-badge"><span class="star">★</span>6.1</div>
+                    </div>
+                    <div class="title-box">
+                        <div class="title-en" title="Shelter.2026">Shelter.2026</div>
+                        <div class="title-cn" title="天眼浩劫">天眼浩劫</div>
+                    </div>
+                    <div class="movie-info">密碼: 2026movie</div>
+                </div>
+                <div class="movie-card" onclick="cardClickAction('2026movie', 'https://u.pcloud.link/publink/show?code=kZjyud5ZEtrVAVc6saYsbA1vqJzCQu9IzeNk')">
+                    <div class="poster-wrapper" title="點擊前往 IMDb 頁面" onclick="posterClickAction(event, 'https://www.imdb.com/title/tt32820897/')">
+                        
+                            <img src="https://m.media-amazon.com/images/M/MV5BOGQ3YWUzYjEtMTJiYy00ZjQ0LWI0YjktYjhiNGVhNGExYTM3XkEyXkFqcGc@._V1_SX300.jpg" alt="Demon Slayer: Kimetsu no Yaiba Infinity Castle">
+                        
+                        <div class="rating-badge"><span class="star">★</span>8.4</div>
+                    </div>
+                    <div class="title-box">
+                        <div class="title-en" title="Demon Slayer: Kimetsu no Yaiba Infinity Castle">Demon Slayer: Kimetsu no Yaiba Infinity Castle</div>
+                        <div class="title-cn" title="劇場版「鬼滅の刃」無限城編「第一章 猗窩座再来」">劇場版「鬼滅の刃」無限城編「第一章 猗窩座再来」</div>
+                    </div>
+                    <div class="movie-info">密碼: 2026movie</div>
+                </div>
+                <div class="movie-card" onclick="cardClickAction('2026movie', 'https://u.pcloud.link/publink/show?code=kZ7Xud5ZKlV5aYxYXd4H5vLdwwEsi5hcrHFX')">
+                    <div class="poster-wrapper" title="點擊前往 IMDb 頁面" onclick="posterClickAction(event, 'https://www.imdb.com/title/tt11214558')">
+                        
+                            <img src="https://m.media-amazon.com/images/M/MV5BOWYxZTM1ZGMtMjg5MC00NzcyLTk0ZTEtZWI0ZThkNDJiYjZmXkEyXkFqcGc@._V1_QL75_UX380_CR0,15,380,562_.jpg" alt="The Smashing Machine">
+                        
+                        <div class="rating-badge"><span class="star">★</span>6.4</div>
+                    </div>
+                    <div class="title-box">
+                        <div class="title-en" title="The Smashing Machine">The Smashing Machine</div>
+                        <div class="title-cn" title="重擊人生">重擊人生</div>
+                    </div>
+                    <div class="movie-info">密碼: 2026movie</div>
+                </div>
+                <div class="movie-card" onclick="cardClickAction('2026movie', 'https://u.pcloud.link/publink/show?code=kZ4tEx5Z7YcqYdVpnzJ3cfPhkWIjs7qIxg6y')">
+                    <div class="poster-wrapper" title="點擊前往 IMDb 頁面" onclick="posterClickAction(event, 'https://www.imdb.com/title/tt26443597')">
+                        
+                            <img src="https://m.media-amazon.com/images/M/MV5BYjg1Mjc3MjQtMTZjNy00YWVlLWFhMWEtMWI3ZTgxYjJmNmRlXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg" alt="Zootopia.2.2025">
+                        
+                        <div class="rating-badge"><span class="star">★</span>7.6</div>
+                    </div>
+                    <div class="title-box">
+                        <div class="title-en" title="Zootopia.2.2025">Zootopia.2.2025</div>
+                        <div class="title-cn" title="動物方城市2">動物方城市2</div>
+                    </div>
+                    <div class="movie-info">密碼: 2026movie</div>
+                </div>
+                <div class="movie-card" onclick="cardClickAction('2025movie', 'https://u.pcloud.link/publink/show?code=kZtcpC5ZesS9M4umRe4MlSU0fNRAMQXgqUBk')">
+                    <div class="poster-wrapper" title="點擊前往 IMDb 頁面" onclick="posterClickAction(event, 'https://www.imdb.com/title/tt6604188')">
+                        
+                            <img src="https://m.media-amazon.com/images/M/MV5BYzNlY2RiYWEtMDA0YS00MTZkLWI5YmUtMDNiZDZlN2E4MTVlXkEyXkFqcGc@._V1_QL75_UY562_CR0,0,380,562_.jpg" alt="Tron.Ares.2025.Hybrid">
+                        
+                        <div class="rating-badge"><span class="star">★</span>6.4</div>
+                    </div>
+                    <div class="title-box">
+                        <div class="title-en" title="Tron.Ares.2025.Hybrid">Tron.Ares.2025.Hybrid</div>
+                        <div class="title-cn" title="創-戰神">創-戰神</div>
+                    </div>
+                    <div class="movie-info">密碼: 2025movie</div>
+                </div>
+    </div>
+    <div class="toast" id="toast">已複製密碼！</div>
+
+    <script>
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 2500);
+        }
+
+        function posterClickAction(event, url) {
+            event.stopPropagation();
+            if (url) {
+                window.open(url, '_blank');
+            } else {
+                showToast("此影片無 IMDb 連結！");
+            }
+        }
+
+        function cardClickAction(password, downloadUrl) {
+            if (password) {
+                navigator.clipboard.writeText(password);
+                showToast("已複製密碼：" + password + "，準備前往下載頁面...");
+            }
+            if (downloadUrl) {
+                setTimeout(() => {
+                    window.open(downloadUrl, '_blank');
+                }, 800);
+            }
+        }
+    </script>
+</body>
+</html>
